@@ -100,14 +100,18 @@ News:
 
 1. [python3 with anaconda](https://www.continuum.io/downloads)
 2. [pytorch with/out CUDA](http://pytorch.org)
+3.这两步我之前在maskrcnn中就已经完成了配置，因此，可以直接进行后一步
 
 ### Install from pip
 
 3. `pip install pretrainedmodels`
+这一步虽然看起来奇怪 但是似乎就是在安装 当前的这个库 连内容都挺像
+
 
 ### Install from repo
 
 3. `git clone https://github.com/Cadene/pretrained-models.pytorch.git`
+注意良好的cd
 4. `cd pretrained-models.pytorch`
 5. `python setup.py install`
 
