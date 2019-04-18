@@ -1,0 +1,28 @@
+两个txt文件应该是对应关系
+        # Load Imagenet Synsets
+        这里存在映射关系
+        with open('data/imagenet_synsets.txt', 'r') as f:
+            synsets = f.readlines()
+
+        # len(synsets)==1001
+        # sysnets[0] == background
+        synsets = [x.strip() for x in synsets]
+        splits = [line.split(' ') for line in synsets]
+        这里建立了映射关系
+        key_to_classname = {spl[0]:' '.join(spl[1:]) for spl in splits}
+这是更多是数字
+        with open('data/imagenet_classes.txt', 'r') as f:
+            class_id_to_key = f.readlines()
+
+        class_id_to_key = [x.strip() for x in class_id_to_key]
+
+        # Make predictions
+        output = model(input) # size(1, 1000)
+        max, argmax = output.data.squeeze().max(0)
+        class_id = argmax[0]
+        class_key = class_id_to_key[class_id]
+        这里得到ID
+        classname = key_to_classname[class_key]
+        这里得到name
+
+        print("'{}': '{}' is a '{}'".format(arch, path_img, classname))
