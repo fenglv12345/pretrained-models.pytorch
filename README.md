@@ -188,9 +188,24 @@ output_logits = model.logits(output_features) # 1x1000
 $ python examples/imagenet_logits.py -h
 > nasnetalarge, resnet152, inceptionresnetv2, inceptionv4, ...
 ```
+alexnet | bninception |
+                        cafferesnet101 | densenet121 | densenet161 |
+                        densenet169 | densenet201 | dpn107 | dpn131 | dpn68 |
+                        dpn68b | dpn92 | dpn98 | fbresnet152 |
+                        inceptionresnetv2 | inceptionv3 | inceptionv4 |
+                        nasnetalarge | nasnetamobile | pnasnet5large | polynet
+                        | resnet101 | resnet152 | resnet18 | resnet34 |
+                        resnet50 | resnext101_32x4d | resnext101_64x4d |
+                        se_resnet101 | se_resnet152 | se_resnet50 |
+                        se_resnext101_32x4d | se_resnext50_32x4d | senet154 |
+                        squeezenet1_0 | squeezenet1_1 | vgg11 | vgg11_bn |
+                        vgg13 | vgg13_bn | vgg16 | vgg16_bn | vgg19 | vgg19_bn
+                        | xception (default: nasnetalarge)
 
 ```
 $ python examples/imagenet_logits.py -a nasnetalarge --path_img data/cat.png
+python examples/imagenet_logits.py -a vgg13 --path_img data/cat.png
+python examples/imagenet_logits.py -a resnet18 --path_img data/cat.png
 > 'nasnetalarge': data/cat.png' is a 'tiger cat' 
 ```
 
@@ -200,6 +215,21 @@ $ python examples/imagenet_logits.py -a nasnetalarge --path_img data/cat.png
 
 ```
 $ python examples/imagenet_eval.py /local/common-data/imagenet_2012/images -a nasnetalarge -b 20 -e
+/data5/gbzhu/imagenet/val
+CUDA_VISIBLE_DEVICES="0,1"
+python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a resnet18 -b 20 -e
+
+I confirm.
+
+When I use 2 GPUs and call resnet50 from torchvision => works well.
+
+Call it from Cadene pre-trained models => RuntimeError: Expected tensor for argument #1 'input' to have the same device as tensor for argument #2 'weight'; but device 1 does not equal 0 (while checking arguments for cudnn_convolution)
+
+After model is initialized I apply:
+model = torch.nn.DataParallel(model, device_ids=[0, 1]).cuda()
+
+
+
 > * Acc@1 92.693, Acc@5 96.13
 ```
 
