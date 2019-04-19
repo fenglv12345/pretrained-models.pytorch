@@ -233,27 +233,27 @@ model = torch.nn.DataParallel(model, device_ids=[0, 1]).cuda()
 > * Acc@1 92.693, Acc@5 96.13
 ```
 ### 各个预训练模型参数的大小
-    'alexnet': 'https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth',
-    'densenet121': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet121-fbdb23505.pth',
-    'densenet169': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet169-f470b90a4.pth',
-    'densenet201': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet201-5750cbb1e.pth',
-    'densenet161': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet161-347e6b360.pth',
-    'inceptionv3': 'https://download.pytorch.org/models/inception_v3_google-1a9a5a14.pth',
-    'resnet18': 'https://download.pytorch.org/models/resnet18-5c106cde.pth',
-    'resnet34': 'https://download.pytorch.org/models/resnet34-333f7ec4.pth',
-    'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',
-    'resnet101': 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth',
-    'resnet152': 'https://download.pytorch.org/models/resnet152-b121ed2d.pth',
-    'squeezenet1_0': 'https://download.pytorch.org/models/squeezenet1_0-a815701f.pth',
-    'squeezenet1_1': 'https://download.pytorch.org/models/squeezenet1_1-f364aa15.pth',
-    'vgg11': 'https://download.pytorch.org/models/vgg11-bbd30ac9.pth',
-    'vgg13': 'https://download.pytorch.org/models/vgg13-c768596a.pth',
-    'vgg16': 'https://download.pytorch.org/models/vgg16-397923af.pth',
-    'vgg19': 'https://download.pytorch.org/models/vgg19-dcbb9e9d.pth',
-    'vgg11_bn': 'https://download.pytorch.org/models/vgg11_bn-6002323d.pth',
-    'vgg13_bn': 'https://download.pytorch.org/models/vgg13_bn-abd245e5.pth',
-    'vgg16_bn': 'https://download.pytorch.org/models/vgg16_bn-6c64b313.pth',
-    'vgg19_bn': 'https://download.pytorch.org/models/vgg19_bn-c79401a0.pth',
+    'alexnet': 'https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth',223
+    'densenet121': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet121-fbdb23505.pth',30.9
+    'densenet169': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet169-f470b90a4.pth',54.7
+    'densenet201': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet201-5750cbb1e.pth',77.4
+    'densenet161': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet161-347e6b360.pth',110
+    'inceptionv3': 'https://download.pytorch.org/models/inception_v3_google-1a9a5a14.pth',104
+    'resnet18': 'https://download.pytorch.org/models/resnet18-5c106cde.pth',44.7
+    'resnet34': 'https://download.pytorch.org/models/resnet34-333f7ec4.pth',83.3
+    'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',97.8
+    'resnet101': 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth',170
+    'resnet152': 'https://download.pytorch.org/models/resnet152-b121ed2d.pth',230
+    'squeezenet1_0': 'https://download.pytorch.org/models/squeezenet1_0-a815701f.pth',4.8
+    'squeezenet1_1': 'https://download.pytorch.org/models/squeezenet1_1-f364aa15.pth',4.7
+    'vgg11': 'https://download.pytorch.org/models/vgg11-bbd30ac9.pth',507
+    'vgg13': 'https://download.pytorch.org/models/vgg13-c768596a.pth',508
+    'vgg16': 'https://download.pytorch.org/models/vgg16-397923af.pth',528
+    'vgg19': 'https://download.pytorch.org/models/vgg19-dcbb9e9d.pth',548
+    'vgg11_bn': 'https://download.pytorch.org/models/vgg11_bn-6002323d.pth',507
+    'vgg13_bn': 'https://download.pytorch.org/models/vgg13_bn-abd245e5.pth',508
+    'vgg16_bn': 'https://download.pytorch.org/models/vgg16_bn-6c64b313.pth',528
+    'vgg19_bn': 'https://download.pytorch.org/models/vgg19_bn-c79401a0.pth',548
 
 
 ## Evaluation on imagenet
