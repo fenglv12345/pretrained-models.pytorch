@@ -216,8 +216,9 @@ python examples/imagenet_logits.py -a resnet18 --path_img data/cat.png
 ```
 $ python examples/imagenet_eval.py /local/common-data/imagenet_2012/images -a nasnetalarge -b 20 -e
 /data5/gbzhu/imagenet/val
-CUDA_VISIBLE_DEVICES="0,1"
+CUDA_VISIBLE_DEVICES="0"
 python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a resnet18 -b 20 -e
+python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a squeezenet1_1 -b 20 -e
 
 I confirm.
 
@@ -238,12 +239,53 @@ model = torch.nn.DataParallel(model, device_ids=[0, 1]).cuda()
     'densenet169': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet169-f470b90a4.pth',54.7
     'densenet201': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet201-5750cbb1e.pth',77.4
     'densenet161': 'http://data.lip6.fr/cadene/pretrainedmodels/densenet161-347e6b360.pth',110
+     'bninception': 'http://data.lip6.fr/cadene/pretrainedmodels/bn_inception-52deb4733.pth',86.4
     'inceptionv3': 'https://download.pytorch.org/models/inception_v3_google-1a9a5a14.pth',104
+     'inceptionv4': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/inceptionv4-8e4777a0.pth',163
+        'imagenet+background': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/inceptionv4-8e4777a0.pth',163
+     'inceptionresnetv2': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/inceptionresnetv2-520b38e4.pth',213
+        'imagenet+background': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/inceptionresnetv2-520b38e4.pth',213
+        'xception': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/xception-43020ad28.pth',87.4
     'resnet18': 'https://download.pytorch.org/models/resnet18-5c106cde.pth',44.7
     'resnet34': 'https://download.pytorch.org/models/resnet34-333f7ec4.pth',83.3
     'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',97.8
     'resnet101': 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth',170
     'resnet152': 'https://download.pytorch.org/models/resnet152-b121ed2d.pth',230
+   model_urls = {
+    'wideresnet152': 'https://s3.amazonaws.com/pytorch/h5models/wide-resnet-50-2-export.hkl'245
+   'resnext101_32x4d': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/resnext101_32x4d-29e315fa.pth',169
+   'resnext101_64x4d': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/resnext101_64x4d-e77a0586.pth', 319 
+    'senet154': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/senet154-c7b49a05.pth',440
+    'se_resnet50': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnet50-ce0d4300.pth',107
+    'se_resnet101': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnet101-7e38fcc6.pth',189
+    'se_resnet152': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnet152-d17c99b7.pth',256
+    'se_resnext50_32x4d': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnext50_32x4d-a260b3a4.pth',105
+    'se_resnext101_32x4d': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/se_resnext101_32x4d-3b2fe3d8.pth',187
+     从统计上来说，在原有神经网络结构上增加了SE之后，参数数目增加了10%
     'squeezenet1_0': 'https://download.pytorch.org/models/squeezenet1_0-a815701f.pth',4.8
     'squeezenet1_1': 'https://download.pytorch.org/models/squeezenet1_1-f364aa15.pth',4.7
     'vgg11': 'https://download.pytorch.org/models/vgg11-bbd30ac9.pth',507
@@ -254,8 +296,44 @@ model = torch.nn.DataParallel(model, device_ids=[0, 1]).cuda()
     'vgg13_bn': 'https://download.pytorch.org/models/vgg13_bn-abd245e5.pth',508
     'vgg16_bn': 'https://download.pytorch.org/models/vgg16_bn-6c64b313.pth',528
     'vgg19_bn': 'https://download.pytorch.org/models/vgg19_bn-c79401a0.pth',548
-
-
+    'vggm': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/vggm-786f2434.pth',393
+'dpn68': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn68-4af7d88d2.pth',48.4
+'dpn68b': {
+        'imagenet+5k': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn68b_extra-363ab9c19.pth',48.4
+ 'dpn92': { 
+         'imagenet+5k': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn92_extra-fda993c95.pth',144
+'dpn98': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn98-722954780.pth',236
+ 'dpn131': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn131-7af84be88.pth',303
+ 'dpn107': {
+        'imagenet+5k': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn107_extra-b7f9f4cc9.pth',332     
+    'nasnetalarge': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/nasnetalarge-a1897284.pth', 340           
+     'imagenet+background': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/nasnetalarge-a1897284.pth', 340      
+    'nasnetamobile': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/nasnetamobile-7e03cead.pth',20.5        
+     'pnasnet5large': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/pnasnet5large-bf079911.pth', 329      
+     'imagenet+background': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/pnasnet5large-bf079911.pth',329
+     pretrained_settings = {
+    'polynet': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/polynet-f71d82a5.pth',366
 ## Evaluation on imagenet
 
 ### Accuracy on validation set (single model)
