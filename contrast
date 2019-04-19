@@ -1,0 +1,67 @@
+def modify_squeezenets(model):
+    # /!\ Beware squeezenets do not have any last_linear module
+
+    # Modify attributs
+    model.dropout = model.classifier[0]
+    model.last_conv = model.classifier[1]
+    model.relu = model.classifier[2]
+    model.avgpool = model.classifier[3]
+    del model.classifier
+
+    def logits(self, features):
+        x = self.dropout(features)
+        x = self.last_conv(x)
+        x = self.relu(x)
+        x = self.avgpool(x)
+        return x
+    def forward(self, input):
+        x = self.features(input)
+        x = self.logits(x)
+        return x
+
+    # Modify methods
+    model.logits = types.MethodType(logits, model)
+    model.forward = types.MethodType(forward, model)
+    return model
+    
+    
+    
+    def modify_resnets(model):
+    # Modify attributs
+    model.last_linear = model.fc
+    model.fc = None
+
+    def features(self, input):
+        x = self.conv1(input)
+        x = self.bn1(x)
+        x = self.relu(x)
+        x = self.maxpool(x)
+
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+        x = self.layer4(x)
+        return x
+
+    def logits(self, features):
+        x = self.avgpool(features)
+        x = x.view(x.size(0), -1)
+        x = self.last_linear(x)
+        return x
+
+    def forward(self, input):
+        x = self.features(input)
+        x = self.logits(x)
+        return x
+
+    # Modify methods
+    model.features = types.MethodType(features, model)
+    model.logits = types.MethodType(logits, model)
+    model.forward = types.MethodType(forward, model)
+    return model
+    
+    最终的结果是
+    原本的resnet输出的是([20,1000])
+    而squeezenet输出的是([20,1000,1,1])
+    我在eval中使用了output=output.reshape(-1,1000)解决了这个问题
+    但是这种解决办法并不好 是一个隐患！
