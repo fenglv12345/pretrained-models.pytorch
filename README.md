@@ -219,7 +219,10 @@ $ python examples/imagenet_eval.py /local/common-data/imagenet_2012/images -a na
 CUDA_VISIBLE_DEVICES="0"
 python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a resnet18 -b 20 -e
 CUDA_VISIBLE_DEVICES="0"
-python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a squeezenet1_1 -b 20 -e
+python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a xception -b 10 -e
+python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a resnet34 -b 20 -e
+CUDA_VISIBLE_DEVICES="0"
+python examples/imagenet_eval.py --data /data5/gbzhu/imagenet/ -a squeezenet1_0 -b 20 -e
 
 I confirm.
 
