@@ -340,18 +340,18 @@ model = torch.nn.DataParallel(model, device_ids=[0, 1]).cuda()
 
 Results were obtained using (center cropped) images of the same size than during the training process.
 
-Model | Version | Acc@1 | Acc@5
---- | --- | --- | ---
-PNASNet-5-Large | [Tensorflow](https://github.com/tensorflow/models/tree/master/research/slim) | 82.858 | 96.182
-[PNASNet-5-Large](https://github.com/Cadene/pretrained-models.pytorch#pnasnet) | Our porting | 82.736 | 95.992
-NASNet-A-Large | [Tensorflow](https://github.com/tensorflow/models/tree/master/research/slim) | 82.693 | 96.163
-[NASNet-A-Large](https://github.com/Cadene/pretrained-models.pytorch#nasnet) | Our porting | 82.566 | 96.086
-SENet154 | [Caffe](https://github.com/hujie-frank/SENet) | 81.32 | 95.53
-[SENet154](https://github.com/Cadene/pretrained-models.pytorch#senet) | Our porting | 81.304 | 95.498
-PolyNet | [Caffe](https://github.com/CUHK-MMLAB/polynet) | 81.29 | 95.75
-[PolyNet](https://github.com/Cadene/pretrained-models.pytorch#polynet) | Our porting | 81.002 | 95.624
-InceptionResNetV2 | [Tensorflow](https://github.com/tensorflow/models/tree/master/slim) | 80.4 | 95.3
-InceptionV4 | [Tensorflow](https://github.com/tensorflow/models/tree/master/slim) | 80.2 | 95.3
+Model | Version | Acc@1 | Acc@5 |para nums
+--- | --- | --- | --- | ---
+PNASNet-5-Large | [Tensorflow](https://github.com/tensorflow/models/tree/master/research/slim) | 82.858 | 96.182 | 329
+[PNASNet-5-Large](https://github.com/Cadene/pretrained-models.pytorch#pnasnet) | Our porting | 82.736 | 95.992 | 329
+NASNet-A-Large | [Tensorflow](https://github.com/tensorflow/models/tree/master/research/slim) | 82.693 | 96.163 | 340
+[NASNet-A-Large](https://github.com/Cadene/pretrained-models.pytorch#nasnet) | Our porting | 82.566 | 96.086 | 340
+SENet154 | [Caffe](https://github.com/hujie-frank/SENet) | 81.32 | 95.53 | 440
+[SENet154](https://github.com/Cadene/pretrained-models.pytorch#senet) | Our porting | 81.304 | 95.498 | 440
+PolyNet | [Caffe](https://github.com/CUHK-MMLAB/polynet) | 81.29 | 95.75 | 366
+[PolyNet](https://github.com/Cadene/pretrained-models.pytorch#polynet) | Our porting | 81.002 | 95.624 | 366
+InceptionResNetV2 | [Tensorflow](https://github.com/tensorflow/models/tree/master/slim) | 80.4 | 95.3 | 213
+InceptionV4 | [Tensorflow](https://github.com/tensorflow/models/tree/master/slim) | 80.2 | 95.3 | 163
 [SE-ResNeXt101_32x4d](https://github.com/Cadene/pretrained-models.pytorch#senet) | Our porting | 80.236 | 95.028
 SE-ResNeXt101_32x4d | [Caffe](https://github.com/hujie-frank/SENet) | 80.19 | 95.04
 [InceptionResNetV2](https://github.com/Cadene/pretrained-models.pytorch#inception) | Our porting | 80.170 | 95.234
