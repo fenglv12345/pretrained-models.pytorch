@@ -1,0 +1,135 @@
+目前我准备将mobilenet v1 v2 shufflenet v1 v2给迁移到这里，也就是集成
+（1）神经网络的结构要有
+（2）神经网络的预训练模型要有
+（3）pretrained setting这是我没有想到的
+其实确实如此都有哪些内容呢
+pretrained_settings = {}
+
+for model_name in __all__:
+    pretrained_settings[model_name] = {
+        'imagenet': {
+            'url': model_urls[model_name],
+            'input_space': 'RGB',
+            'input_size': input_sizes[model_name],
+            'input_range': [0, 1],
+            'mean': means[model_name],
+            'std': stds[model_name],
+            'num_classes': 1000
+        }
+    }
+可以看到 首先是预训练模型的url地址，我们需要在这里下载
+然后是inputspace
+然后是input_size目前我看到的都有哪些？
+[3, 224, 224]
+[3, 299, 299]
+[3, 221, 221]
+[3, 331, 331]
+然后是input_range都有哪些？
+[0, 1]
+[0,255]
+然后是mean 和std
+            'mean': [0.5, 0.5, 0.5],
+            'std': [0.5, 0.5, 0.5],
+             'mean': [0.485, 0.456, 0.406],
+            'std': [0.229, 0.224, 0.225],
+             'mean': [123.68, 116.779, 103.939],
+            'std': [1, 1, 1],
+ 显然对于不同的模型，这些参数是不一样的，这些虽然不是模型所特有的，但是由于我们需要利用预训练模型，所以，有必要
+ 对于输入的图片利用这些参数进行处理！
+ 
+ 我想他的收集工作也应该是这么完成的！
+ 
+resnext
+   mean = { 0.485, 0.456, 0.406 },
+   std = { 0.229, 0.224, 0.225 },
+    'mean': [0.485, 0.456, 0.406],
+   'std': [0.229, 0.224, 0.225],
+   
+ return t.Compose{
+         t.Scale(256),
+         t.ColorNormalize(meanstd),
+         Crop(224),
+      }
+      
+             'input_size': [3, 224, 224],
+            'input_range': [0, 1],
+            'mean': [0.485, 0.456, 0.406],
+            'std': [0.229, 0.224, 0.225],
+            'num_classes': 1000
+            
+  0.875就是转换关系！ 224到256 然后crop出224!
+  
+  然后是dpn
+      'dpn68': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn68-4af7d88d2.pth',
+            'input_space': 'RGB',
+            'input_size': [3, 224, 224],
+            'input_range': [0, 1],
+            'mean': [124 / 255, 117 / 255, 104 / 255],
+            'std': [1 / (.0167 * 255)] * 3,
+            'num_classes': 1000
+            
+            
+            scale=0.0167)
+            parser.add_argument('--rgb-mean',      type=str, default='124,117,104')
+            
+     'senet154': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/senet154-c7b49a05.pth',
+            'input_space': 'RGB',
+            'input_size': [3, 224, 224],
+            'input_range': [0, 1],
+            'mean': [0.485, 0.456, 0.406],
+            'std': [0.229, 0.224, 0.225],
+            'num_classes': 1000
+        }
+    },这里和resnext真的很像！
+    for model_name in __all__:
+    input_sizes[model_name] = [3, 224, 224]
+    means[model_name] = [0.485, 0.456, 0.406]
+    stds[model_name] = [0.229, 0.224, 0.225]
+# first definition
+for model_name in ['inceptionv3']:
+    input_sizes[model_name] = [3, 299, 299]
+    means[model_name] = [0.5, 0.5, 0.5]
+    stds[model_name] = [0.5, 0.5, 0.5]
+# second definition
+而且就是说 对于torchvision中的模型，大部分也采用的是    
+   input_sizes[model_name] = [3, 224, 224]
+    means[model_name] = [0.485, 0.456, 0.406]
+    stds[model_name] = [0.229, 0.224, 0.225]
+    
+    # mean_value: 104, 117, 123
+    除以255得到[0.408 0.459 0.482]
+    显然差不多！
+    问题是两者并不一致！
+    
+    然后是bninception
+               'input_size': [3, 224, 224],
+            'input_range': [0, 255],
+            'mean': [104, 117, 128],
+            'std': [1, 1, 1],
+            这个与作者说的normalize = transforms.Normalize(mean=[127.5, 127.5, 127.5],
+                                     std=[1, 1, 1])一致
+                                     
+                                     
+     正如作者说的那样
+     对于inceptionv4
+     inceptionv3 inception resnet v2
+     采用的是
+                 'input_size': [3, 299, 299],
+            'input_range': [0, 1],
+            'mean': [0.5, 0.5, 0.5],
+            'std': [0.5, 0.5, 0.5],
+            论文中的输入大小也是 3 299 299
+     原本的代码实现是
+            x_ch0 = torch.unsqueeze(x[:, 0], 1) * (0.229 / 0.5) + (0.485 - 0.5) / 0.5
+            x_ch1 = torch.unsqueeze(x[:, 1], 1) * (0.224 / 0.5) + (0.456 - 0.5) / 0.5
+            x_ch2 = torch.unsqueeze(x[:, 2], 1) * (0.225 / 0.5) + (0.406 - 0.5) / 0.5
+            x = torch.cat((x_ch0, x_ch1, x_ch2), 1)
+            这相当于是 首先回到从前*0.229+0.485 然后再进行操作 -0.5并除以0.5有点意思？
+            
+            
+                                     
+    
