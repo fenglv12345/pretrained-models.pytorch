@@ -258,6 +258,12 @@ model = torch.nn.DataParallel(model, device_ids=[0, 1]).cuda()
     'resnet34': 'https://download.pytorch.org/models/resnet34-333f7ec4.pth',83.3
     'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',97.8
     'resnet101': 'https://download.pytorch.org/models/resnet101-5d3b4d8f.pth',170
+       'cafferesnet101': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/cafferesnet101-9d633cc0.pth',170
+       'fbresnet152': {
+        'imagenet': {
+            'url': 'http://data.lip6.fr/cadene/pretrainedmodels/fbresnet152-2e20f6b4.pth',231
     'resnet152': 'https://download.pytorch.org/models/resnet152-b121ed2d.pth',230
    model_urls = {
     'wideresnet152': 'https://s3.amazonaws.com/pytorch/h5models/wide-resnet-50-2-export.hkl'245
@@ -373,17 +379,17 @@ ResNet152 | [Pytorch](https://github.com/pytorch/vision#models) | 78.428 | 94.11
 [SE-ResNet101](https://github.com/Cadene/pretrained-models.pytorch#senet) | Our porting | 78.396 | 94.258 | 189
 SE-ResNet101 | [Caffe](https://github.com/hujie-frank/SENet) | 78.25 | 94.28 | 189
 [ResNeXt101_32x4d](https://github.com/Cadene/pretrained-models.pytorch#resnext) | Our porting | 78.188 | 93.886 | 169
-FBResNet152 | [Torch7](https://github.com/facebook/fb.resnet.torch) | 77.84 | 93.84
+FBResNet152 | [Torch7](https://github.com/facebook/fb.resnet.torch) | 77.84 | 93.84 | 231
 SE-ResNet50 | [Caffe](https://github.com/hujie-frank/SENet) | 77.63 | 93.64 | 107
 [SE-ResNet50](https://github.com/Cadene/pretrained-models.pytorch#senet) | Our porting | 77.636 | 93.752 | 107
 [DenseNet161](https://github.com/Cadene/pretrained-models.pytorch#torchvision) | [Pytorch](https://github.com/pytorch/vision#models) | 77.560 | 93.798 | 110
 [ResNet101](https://github.com/Cadene/pretrained-models.pytorch#torchvision) | [Pytorch](https://github.com/pytorch/vision#models) | 77.438 | 93.672 | 170
-[FBResNet152](https://github.com/Cadene/pretrained-models.pytorch#facebook-resnet) | Our porting | 77.386 | 93.594
+[FBResNet152](https://github.com/Cadene/pretrained-models.pytorch#facebook-resnet) | Our porting | 77.386 | 93.594 | 231
 [InceptionV3](https://github.com/Cadene/pretrained-models.pytorch#inception) | [Pytorch](https://github.com/pytorch/vision#models) | 77.294 | 93.454 | 104
 [DenseNet201](https://github.com/Cadene/pretrained-models.pytorch#torchvision) | [Pytorch](https://github.com/pytorch/vision#models) | 77.152 | 93.548 | 77.4
 [DualPathNet68b_5k](https://github.com/Cadene/pretrained-models.pytorch#dualpathnetworks) | Our porting | 77.034 | 93.590 | 48.4
-[CaffeResnet101](https://github.com/Cadene/pretrained-models.pytorch#caffe-resnet) | [Caffe](https://github.com/KaimingHe/deep-residual-networks) | 76.400 | 92.900
-[CaffeResnet101](https://github.com/Cadene/pretrained-models.pytorch#caffe-resnet) | Our porting | 76.200 | 92.766 | 
+[CaffeResnet101](https://github.com/Cadene/pretrained-models.pytorch#caffe-resnet) | [Caffe](https://github.com/KaimingHe/deep-residual-networks) | 76.400 | 92.900 | 231
+[CaffeResnet101](https://github.com/Cadene/pretrained-models.pytorch#caffe-resnet) | Our porting | 76.200 | 92.766 | 231
 [DenseNet169](https://github.com/Cadene/pretrained-models.pytorch#torchvision) | [Pytorch](https://github.com/pytorch/vision#models) | 76.026 | 92.992 | 54.7
 [ResNet50](https://github.com/Cadene/pretrained-models.pytorch#torchvision) | [Pytorch](https://github.com/pytorch/vision#models) | 76.002 | 92.980 | 97.8
 [DualPathNet68](https://github.com/Cadene/pretrained-models.pytorch#dualpathnetworks) | Our porting | 75.868 | 92.774 | 48.4
